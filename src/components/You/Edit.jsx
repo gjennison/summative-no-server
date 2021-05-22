@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import back from '../../back.png';
 
 export default class Edit extends Component{

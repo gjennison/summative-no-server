@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
 import back from '../../back.png';
-import { AiOutlineConsoleSql } from "react-icons/ai";
 
 export default class ListNew extends Component{
     constructor(props){

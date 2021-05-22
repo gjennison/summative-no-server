@@ -172,11 +172,19 @@ export default class Container extends Component{
         this.setState({listings: products})
     }
 
+    deleteProduct = (product) => {
+        let temp = this.state.listings;
+
+        temp.splice(temp.indexOf(product), 1)
+
+        this.setState({listings: temp})
+    }
+
     render(){
         let currentState;
 
         if(this.state.screenState === "home") currentState = <Home updateProduct={this.updateProduct} listings={this.state.listings} homeClickedCallback={() => this.setState({homeClicked: false})} clicked={this.state.homeClicked}/>
-        else if(this.state.screenState === "you") currentState = <You updateProducts={this.updateProducts} postProduct={this.postProduct} listings={this.state.listings} updateProduct={this.updateProduct} youClickedCallback={() => this.setState({youClicked: false})} clicked={this.state.youClicked} masterCallback={this.youCallback}/>
+        else if(this.state.screenState === "you") currentState = <You deleteProduct={this.deleteProduct} updateProducts={this.updateProducts} postProduct={this.postProduct} listings={this.state.listings} updateProduct={this.updateProduct} youClickedCallback={() => this.setState({youClicked: false})} clicked={this.state.youClicked} masterCallback={this.youCallback}/>
         else if(this.state.screenState === "cart") currentState = <Cart updateProduct={this.updateProduct} products={this.state.listings} cartClickedCallback={() => this.setState({cartClicked: false})} clicked={this.state.cartClicked}/>
         else currentState = <Favourites updateProduct={this.updateProduct} listings={this.state.listings}/>
         return(

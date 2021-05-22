@@ -9,18 +9,18 @@ export default class Listings extends Component{
         super(props)
 
         this.state = {
-            products: []
+            // products: []
         }
     }
 
     componentDidMount(){
-        let temp = []
+        // let temp = []
 
-        this.props.products.forEach(el => {
-            temp.push(el)
-        })
-        temp = temp.filter(x => x.user === "you")
-        this.setState({products: temp})
+        // this.props.products.forEach(el => {
+        //     temp.push(el)
+        // })
+        // temp = temp.filter(x => x.user === "you")
+        // this.setState({products: temp})
     }
 
     render(){
@@ -30,7 +30,7 @@ export default class Listings extends Component{
                     <img src={back} alt=""/>
                     <p>account</p>
                 </div>
-                {this.state.products.map((product, index) => 
+                {this.props.products.map((product, index) => 
                     <div className="product" key={index}>
                         <div className="product-img">
                             <img alt="" src={product.img}/>

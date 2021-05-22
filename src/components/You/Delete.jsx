@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
 import {IconContext} from "react-icons";
 import {TiTick} from 'react-icons/ti';
 import {ImCross} from 'react-icons/im';
 
 export default class Delete extends Component{
     delete = e => {
-        axios.delete(`https://dry-river-04948.herokuapp.com/api/products/${this.props.product.id}`, {params: {}})
+        // axios.delete(`https://dry-river-04948.herokuapp.com/api/products/${this.props.product.id}`, {params: {}})
         console.log(this.props.product.id)
         console.log(this.props.product)
         this.props.callback();

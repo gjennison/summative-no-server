@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import Listings from './Listings';
 import Edit from './Edit';
 import Delete from './Delete';
@@ -16,17 +15,35 @@ export default class You extends Component{
             currentProduct: [],
             displayDelete: false,
             products: [],
+            myProducts: [],
         }
     }
     componentDidMount(){
-        axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
-            let temp = []
-            res.data.forEach(el => {
-                if(el.user ==='you')
-                   temp.push(el)
-            })
-            this.setState({products: temp})
+        // axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
+        //     let temp = []
+        //     res.data.forEach(el => {
+        //         if(el.user ==='you')
+        //            temp.push(el)
+        //     })
+        //     this.setState({products: temp})
+        // })
+        let temp = []
+
+        this.props.listings.forEach(el => {
+            temp.push(el)
         })
+        temp = temp.filter(x => x.user === "you")
+        this.setState({myProducts: temp})
+    }
+
+    updateMyProducts = e => {
+        let temp = []
+
+        this.props.listings.forEach(el => {
+            temp.push(el)
+        })
+        temp = temp.filter(x => x.user === "you")
+        this.setState({myProducts: temp})
     }
 
     editCallback = (product) => {
@@ -36,6 +53,7 @@ export default class You extends Component{
     }
 
     deleteCallback = (product) => {
+        this.props.deleteProduct(product)
         let temp = []
         temp.push(product)
         this.setState({currentProduct: temp, displayDelete: true})
@@ -67,11 +85,13 @@ export default class You extends Component{
 
 
 
-        let arrayIndex = this.props.products.indexOf(product);
-        let temp = this.props.listings
+        // let arrayIndex = this.props.products.indexOf(product);
+        // let temp = this.props.listings
 
-        temp.splice(arrayIndex, 1)
-        this.props.updateProducts(temp)
+        // temp.splice(arrayIndex, 1)
+        // this.props.updateProducts(temp)
+        this.props.deleteProduct(product)
+        this.updateMyProducts()
     }
 
     updateProduct = (product) => {
@@ -90,7 +110,7 @@ export default class You extends Component{
             this.props.youClickedCallback();
         }
 
-        if(this.state.currentState === "listings") currentState = <Listings updateProduct={this.updateProduct} products={this.props.listings} backCallback={this.backCallback} editCallback={this.editCallback} deleteCallback={this.deleteCallback}/>
+        if(this.state.currentState === "listings") currentState = <Listings updateProduct={this.updateProduct} products={this.state.myProducts} backCallback={this.backCallback} editCallback={this.editCallback} deleteCallback={this.deleteCallback}/>
         else if(this.state.currentState === "edit") currentState = <Edit updateProduct={this.updateProduct} backCallback={() => this.setState({currentState: 'listings'})} product={this.state.currentProduct[0]}/>
         else if(this.state.currentState === "account") currentState = <Account backCallback={this.backCallback}/>
         else if(this.state.currentState === "list-new") currentState = <ListNew products={this.props.listings} postProduct={this.postProduct} backCallback={this.backCallback}/>
