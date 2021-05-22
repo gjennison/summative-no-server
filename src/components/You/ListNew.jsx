@@ -60,18 +60,24 @@ export default class ListNew extends Component{
 
     submit = e => {
         let highest = 0;
-        let temp = []
-        axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
-            res.data.forEach(el => {
-                temp.push(el)
-            })
-            temp.forEach(product => {
-                if(parseInt(product.id) > highest) highest = parseInt(product.id)+1
-            })
-            axios.post('https://dry-river-04948.herokuapp.com/api/products',
-            `title=${this.state.title}&description=${this.state.description}&price=${this.state.price.slice(1)}&img=${this.state.img}&user=you&location=${this.state.location}&condition=${this.state.condition}&shipping=${this.state.shipping}&pickup=${this.state.pickup}&favourites=false&cart=false&id=${highest}`)
+        let temp = this.props.products
+        temp.forEach(product => {
+            if(parseInt(product.id) > highest) highest = parseInt(product.id)+1
         })
 
+        let product = {
+            title: this.state.title,
+            location: this.state.location,
+            img: this.state.img,
+            description: this.state.description,
+            price: this.state.price,
+            condition: this.state.condition,
+            shipping: this.state.shipping,
+            pickup: this.state.pickup,
+        }
+
+        this.props.postProduct(product)
+        
         this.setState({bounceButton: !this.state.bounceButton})
 
     }

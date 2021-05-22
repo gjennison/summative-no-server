@@ -22,11 +22,15 @@ export default class Favourites extends Component{
         this.setState({whichState: 'listings'})
     }
 
+    updateProduct = (product) => {
+        this.props.updateProduct(product)
+    }
+
     render(){
         let state;
 
-        if(this.state.whichState === 'listings') state = <Listings detailsCallback={this.detailsCallback}/>
-        else state = <ViewDetails title="favourites" callBACK={this.callBACK} product={this.state.detailsData[0]}/>
+        if(this.state.whichState === 'listings') state = <Listings listings={this.props.listings} updateProduct={this.updateProduct} detailsCallback={this.detailsCallback}/>
+        else state = <ViewDetails updateProduct={this.updateProduct} title="favourites" callBACK={this.callBACK} product={this.state.detailsData[0]}/>
         return(
             <div>
                 {state}

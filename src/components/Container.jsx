@@ -12,6 +12,7 @@ import {IoCartOutline} from 'react-icons/io5';
 import {RiUser3Fill} from 'react-icons/ri';
 import {RiUser3Line} from 'react-icons/ri';
 import { IconContext } from "react-icons";
+import { TiFlowChildren } from 'react-icons/ti';
 
 export default class Container extends Component{
     constructor(props){
@@ -22,6 +23,23 @@ export default class Container extends Component{
             homeClicked: false,
             youClicked: false,
             cartClicked: false,
+
+            listings: [
+                {
+                    title: "Canon EOS M3",
+                    description: "Camera in pretty good condition, comes with an extra lens and charging cables.",
+                    price: "290",
+                    img: "https://www.backscatter.com/ITEM_IMAGES/cn-9772b001_01.jpg?resizeid=6&resizeh=600&resizew=600",
+                    user: "jeremy",
+                    location: "Nelson",
+                    condition: "used",
+                    pickup: "yes",
+                    shipping: "arranged on sale",
+                    favourites: "true",
+                    cart: "false",
+                    id: "0"
+                }
+            ]
         }
     }
     
@@ -64,13 +82,37 @@ export default class Container extends Component{
         else if(state === "you") this.setState({youClicked: true})
     }
 
+    updateProduct = (product) => {
+        let listings = this.state.listings;
+
+        listings.forEach(el => {
+            if(el.id === product.id){
+                el = product;
+            }
+        })
+
+        this.setState({listings: listings})
+    }
+
+    postProduct = (product) => {
+        let temp = this.state.listings;
+
+        temp.push(product)
+
+        this.setState({listings: temp})
+    }
+
+    updateProducts = (products) => {
+        this.setState({listings: products})
+    }
+
     render(){
         let currentState;
 
-        if(this.state.screenState === "home") currentState = <Home homeClickedCallback={() => this.setState({homeClicked: false})} clicked={this.state.homeClicked}/>
-        else if(this.state.screenState === "you") currentState = <You youClickedCallback={() => this.setState({youClicked: false})} clicked={this.state.youClicked} masterCallback={this.youCallback}/>
-        else if(this.state.screenState === "cart") currentState = <Cart cartClickedCallback={() => this.setState({cartClicked: false})} clicked={this.state.cartClicked}/>
-        else currentState = <Favourites/>
+        if(this.state.screenState === "home") currentState = <Home updateProduct={this.updateProduct} listings={this.state.listings} homeClickedCallback={() => this.setState({homeClicked: false})} clicked={this.state.homeClicked}/>
+        else if(this.state.screenState === "you") currentState = <You updateProducts={this.updateProducts} postProduct={this.postProduct} listings={this.state.listings} updateProduct={this.updateProduct} youClickedCallback={() => this.setState({youClicked: false})} clicked={this.state.youClicked} masterCallback={this.youCallback}/>
+        else if(this.state.screenState === "cart") currentState = <Cart updateProduct={this.updateProduct} products={this.state.listings} cartClickedCallback={() => this.setState({cartClicked: false})} clicked={this.state.cartClicked}/>
+        else currentState = <Favourites updateProduct={this.updateProduct} listings={this.state.listings}/>
         return(
             <React.Fragment>
                 {currentState}

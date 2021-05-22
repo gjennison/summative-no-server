@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from 'axios';
 import Listings from './Listings';
 import Buy from './Buy';
 import ViewDetails from '../Home/ViewDetails';
@@ -29,15 +28,8 @@ export default class Cart extends Component{
         this.setState({state: 'listings'})
     }
 
-    componentDidMount(){
-        axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
-            let temp = []
-            res.data.forEach(el => {
-                temp.push(el)
-            })
-            temp = temp.filter(x => x.cart === "true")
-            this.setState({products: temp})
-        })
+    updateProduct = (product) => {
+        this.props.updateProduct(product)
     }
 
     render(){
@@ -48,8 +40,8 @@ export default class Cart extends Component{
             this.props.cartClickedCallback();
         }
         
-        if(this.state.state === 'listings') state = <Listings detailsCallback={this.detailsCallback}  products={this.state.products} buyNowPage={this.buyNowPage}/>;
-        else if (this.state.state === 'details') state = <ViewDetails title="cart" callBACK={this.callBACK} product={this.state.detailsData[0]}/>
+        if(this.state.state === 'listings') state = <Listings updateProduct={this.updateProduct} detailsCallback={this.detailsCallback}  products={this.props.products} buyNowPage={this.buyNowPage}/>;
+        else if (this.state.state === 'details') state = <ViewDetails updateProduct={this.updateProduct} title="cart" callBACK={this.callBACK} product={this.state.detailsData[0]}/>
         else state = <Buy backCallback={this.callBACK} products={this.state.products}/>
         return(
             <div>

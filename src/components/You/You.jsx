@@ -58,12 +58,28 @@ export default class You extends Component{
     }
 
     confirmDelete = (product) => {
-        let arrayIndex = this.state.products.indexOf(product);
-        let temp = this.state.products;
+        // let arrayIndex = this.state.products.indexOf(product);
+        // let temp = this.state.products;
 
-        temp.splice(arrayIndex, 1);
+        // temp.splice(arrayIndex, 1);
 
-        this.setState({product: temp})
+        // this.setState({product: temp})
+
+
+
+        let arrayIndex = this.props.products.indexOf(product);
+        let temp = this.props.listings
+
+        temp.splice(arrayIndex, 1)
+        this.props.updateProducts(temp)
+    }
+
+    updateProduct = (product) => {
+        this.props.updateProduct(product)
+    }
+
+    postProduct = (product) => {
+        this.props.postProduct(product)
     }
 
     render(){
@@ -74,10 +90,10 @@ export default class You extends Component{
             this.props.youClickedCallback();
         }
 
-        if(this.state.currentState === "listings") currentState = <Listings products={this.state.products} backCallback={this.backCallback} editCallback={this.editCallback} deleteCallback={this.deleteCallback}/>
-        else if(this.state.currentState === "edit") currentState = <Edit backCallback={() => this.setState({currentState: 'listings'})} product={this.state.currentProduct[0]}/>
+        if(this.state.currentState === "listings") currentState = <Listings updateProduct={this.updateProduct} products={this.props.listings} backCallback={this.backCallback} editCallback={this.editCallback} deleteCallback={this.deleteCallback}/>
+        else if(this.state.currentState === "edit") currentState = <Edit updateProduct={this.updateProduct} backCallback={() => this.setState({currentState: 'listings'})} product={this.state.currentProduct[0]}/>
         else if(this.state.currentState === "account") currentState = <Account backCallback={this.backCallback}/>
-        else if(this.state.currentState === "list-new") currentState = <ListNew backCallback={this.backCallback}/>
+        else if(this.state.currentState === "list-new") currentState = <ListNew postProduct={this.postProduct} backCallback={this.backCallback}/>
         else currentState = <YouHome masterCallback={this.masterCallback} callback={this.homeCallback}/>
         return(
             <div>

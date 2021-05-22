@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import back from '../../back.png';
 import {IconContext} from "react-icons";
 import {BsTrash} from 'react-icons/bs';
@@ -15,13 +14,13 @@ export default class Listings extends Component{
     }
 
     componentDidMount(){
-        axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
-            let temp = []
-            res.data.forEach(el => {
-                temp.push(el)
-            })
-            this.setState({products: temp})
+        let temp = []
+
+        this.props.products.forEach(el => {
+            temp.push(el)
         })
+        temp = temp.filter(x => x.user === "you")
+        this.setState({products: temp})
     }
 
     render(){
@@ -31,7 +30,7 @@ export default class Listings extends Component{
                     <img src={back} alt=""/>
                     <p>account</p>
                 </div>
-                {this.props.products.map((product, index) => 
+                {this.state.products.map((product, index) => 
                     <div className="product" key={index}>
                         <div className="product-img">
                             <img alt="" src={product.img}/>

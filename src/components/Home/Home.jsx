@@ -29,6 +29,10 @@ export default class Home extends Component{
         this.setState({whichState: 'home'})
     }
 
+    updateProduct = (product) => {
+        this.props.updateProduct(product)
+    }
+
     render(){
         let currentState;
 
@@ -38,10 +42,10 @@ export default class Home extends Component{
         }
 
         if(this.state.whichState === 'details'){
-            currentState = <ViewDetails title="home" product={this.state.detailsData[0]} callBACK={this.goBack} buyCallback={this.buyCallback}/>
+            currentState = <ViewDetails updateProduct={this.updateProduct} title="home" product={this.state.detailsData[0]} callBACK={this.goBack} buyCallback={this.buyCallback}/>
         }
         else{
-            currentState = <Listings detailsCallback={this.detailsCallback} buyCallback={this.buyCallback}/>
+            currentState = <Listings updateProduct={this.updateProduct} listings={this.props.listings} detailsCallback={this.detailsCallback} buyCallback={this.buyCallback}/>
         }
         return(
             <React.Fragment>

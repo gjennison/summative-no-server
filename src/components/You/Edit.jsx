@@ -51,8 +51,17 @@ export default class Edit extends Component{
     }
 
     submit = e => {
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${this.props.product.id}`,
-            `title=${this.state.title}&description=${this.state.description}&location=${this.state.location}&price=${this.state.price}&condition=${this.state.condition}&shipping=${this.state.shipping}&pickup=${this.state.pickup}`)
+        let product = this.props.product
+
+        product.title = this.state.title
+        product.description = this.state.description
+        product.location = this.state.location
+        product.price = this.state.price
+        product.condition = this.state.condition
+        product.shipping = this.state.shipping
+        product.pickup = this.state.pickup
+
+        this.props.updateProduct(product)
     }
     
     render(){

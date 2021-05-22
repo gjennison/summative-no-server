@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {IconContext} from "react-icons";
 import {BsTrash} from 'react-icons/bs';
 
@@ -15,18 +14,18 @@ export default class Listings extends Component{
     }
 
     componentDidMount(){
-        axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
-            let temp = []
-            res.data.forEach(el => {
-                if(el.cart === 'true') temp.push(el)
-            })
-            this.setState({products: temp})
+        let temp = []
+
+        this.props.products.forEach(el => {
+            temp.push(el)
         })
+        temp = temp.filter(x => x.cart === "true")
+        this.setState({products: temp})
     }
 
     remove(product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-        `cart=false`)
+        product.cart = "false"
+        this.props.updateProduct(product)
 
         for (let index = 0; index < this.state.products.length; index++) {
             const element = this.state.products[index];

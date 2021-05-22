@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import search from '../../search.png';
 import logo from '../../logo.png';
 import { IconContext } from "react-icons";
@@ -17,29 +16,25 @@ export default class Home extends Component{
     }
 
     componentDidMount(){
-        axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
-            let temp = []
-            res.data.forEach(el => {
-                if(el.favourites === 'true') el.isFavourite = true;
-                else el.isFavourite = false;
-                temp.push(el)
-            })
-            this.setState({products: temp})
+        let temp = []
+
+        this.props.listings.forEach(el => {
+            if(el.favourites === 'true') el.isFavourite = true;
+            else el.isFavourite = false;
+            temp.push(el)
         })
+        this.setState({products: temp})
     }
 
     search = e => {
         this.setState({search: e.target.value})
     }
 
-    addToCart(product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-        `cart=true`)
-    }
-
     addToFavourites(e, product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-        `favourites=true`)
+        product.favourites = "true"
+
+        this.props.updateProduct(product)
+
         let productContainer = e.target;
         while(!productContainer.classList.contains('product-img')){
             productContainer = productContainer.parentElement
@@ -51,8 +46,10 @@ export default class Home extends Component{
     }
 
     removeFromFavourites(e, product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-        `favourites=true`)
+        product.favourites = "false"
+
+        this.props.updateProduct(product)
+
         let productContainer = e.target.parentElement.parentElement.parentElement
         if(productContainer.classList.contains('product-img')){
             if(productContainer.classList.contains('favourite')){

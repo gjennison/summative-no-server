@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {IconContext} from "react-icons";
 import {AiOutlineHeart} from 'react-icons/ai';
 import {AiFillHeart} from 'react-icons/ai';
@@ -13,25 +12,26 @@ export default class ViewDetails extends Component{
         this.state = {
             bounceButton: false,
             bounceLike: false,
-            isInCart: (this.props.product.cart == 'true'),
-            isInFavourites: (this.props.product.favourites == 'true')
+            isInCart: (this.props.product.cart === 'true'),
+            isInFavourites: (this.props.product.favourites === 'true')
         }
     }
     addToCart(product){
         if(this.state.isInCart){
-            axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-            `cart=false`)
+            product.cart = "false"
+            this.props.updateProduct(product)
         }
         else{
-            axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-            `cart=true`)    
+            product.cart = "true"
+            this.props.updateProduct(product)
         }
 
         this.setState({bounceButton: !this.state.bounceButton, isInCart: !this.state.isInCart})
     }
 
     addToFavourites(e, product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,`favourites=true`)
+        product.favourites = "true"
+        this.props.updateProduct(product)
 
         let iconContainer;
         let parentparent = e.target.parentElement.parentElement;
@@ -46,8 +46,8 @@ export default class ViewDetails extends Component{
     }
 
     removeFromFavourites(e, product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-        `favourites=false`)
+        product.favourites = "false"
+        this.props.updateProduct(product)
 
         let iconContainer;
         let parentparent = e.target.parentElement.parentElement;

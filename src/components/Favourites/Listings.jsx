@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {IconContext} from "react-icons";
 import {BsTrash} from 'react-icons/bs';
 
@@ -8,25 +7,24 @@ export default class Favourites extends Component{
         super(props)
 
         this.state = {
-            products: [{
-                title: "hey"
-            }],
+            products: [],
         }
     }
 
     componentDidMount(){
-        axios.get("https://dry-river-04948.herokuapp.com/api/products").then(res => {
-            let temp = []
-            res.data.forEach(el => {
-                temp.push(el)
-            })
-            this.setState({products: temp})
+        let temp = []
+
+        this.props.listings.forEach(el => {
+            if(el.favourites === 'true') el.isFavourite = true;
+            else el.isFavourite = false;
+            temp.push(el)
         })
+        this.setState({products: temp})
     }
 
     addToCart(product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-        `cart=true`)
+        product.cart = "true"
+        this.props.updateProduct(product)
     }
 
     detailsCallback(e, product){
@@ -35,8 +33,8 @@ export default class Favourites extends Component{
     }
 
     remove(product){
-        axios.put(`https://dry-river-04948.herokuapp.com/api/products/${product.id}`,
-        `favourites=false`)
+        product.favourites="false"
+        this.props.updateProduct(product)
 
         for (let index = 0; index < this.state.products.length; index++) {
             const element = this.state.products[index];
