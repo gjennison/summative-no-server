@@ -5,6 +5,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.App, .tabs{
+    max-width: 800px;
+}
 @import './scss/variables.scss';
 @import './scss/pages/pages.scss';
 @import './scss/layout.scss';

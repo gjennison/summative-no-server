@@ -62,6 +62,16 @@ export default class Edit extends Component{
         product.pickup = this.state.pickup
 
         this.props.updateProduct(product)
+
+        if(e.target.classList.contains('post-button-bounce')){
+            e.target.classList.remove("post-button-bounce")
+            e.target.classList.add('post-button-bounce2')
+        }
+        else{
+            e.target.classList.add('post-button-bounce')
+            e.target.classList.remove('post-button-bounce2')
+        }
+        e.target.classList.add('update-button-bounce')
     }
     
     render(){

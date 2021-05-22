@@ -54,10 +54,15 @@
 
 .post-button-bounce{
     animation: post-bounce 0.2s;
+
 }
 
 .post-button-bounce2{
     animation: post-bounce2 0.2s;
+}
+
+.update-button-bounce{
+    background-color: $tertiary;
 }
 
 @keyframes post-bounce{

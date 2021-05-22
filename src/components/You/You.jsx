@@ -93,7 +93,7 @@ export default class You extends Component{
         if(this.state.currentState === "listings") currentState = <Listings updateProduct={this.updateProduct} products={this.props.listings} backCallback={this.backCallback} editCallback={this.editCallback} deleteCallback={this.deleteCallback}/>
         else if(this.state.currentState === "edit") currentState = <Edit updateProduct={this.updateProduct} backCallback={() => this.setState({currentState: 'listings'})} product={this.state.currentProduct[0]}/>
         else if(this.state.currentState === "account") currentState = <Account backCallback={this.backCallback}/>
-        else if(this.state.currentState === "list-new") currentState = <ListNew postProduct={this.postProduct} backCallback={this.backCallback}/>
+        else if(this.state.currentState === "list-new") currentState = <ListNew products={this.props.listings} postProduct={this.postProduct} backCallback={this.backCallback}/>
         else currentState = <YouHome masterCallback={this.masterCallback} callback={this.homeCallback}/>
         return(
             <div>
