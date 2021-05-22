@@ -1,0 +1,34 @@
+.home{
+    margin-bottom: 80px;
+
+    .home-header{
+        display: flex;
+        color: $primary;
+        align-items: center;
+        margin-left: 32px;
+        margin-top: 8px;
+        img{
+            margin-bottom: 8px;
+        }
+        h2{
+            padding-left: 12px;
+            font-family: 'Poppins', sans-serif;
+        }
+    }
+
+    .subheading{
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .product-img{
+        position: relative;
+        .icon{
+            color: $secondary;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 2em;
+        }
+    }
+}

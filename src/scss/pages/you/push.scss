@@ -1,0 +1,29 @@
+.push{
+    input, textarea{
+        width: 100%;
+        border-bottom: 1px solid grey;
+        margin-top: 16px;
+    }
+
+    input{
+        font-size: 1.4em;
+    }
+
+    select{
+        width: 100%;
+    }
+
+    textarea{
+        font-size: 1.2em;
+    }
+
+    .push-submit button{
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    .push-select{
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

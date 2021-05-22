@@ -1,0 +1,35 @@
+.edit{
+    input, textarea{
+        padding-left: 0px;
+        width: 100%;
+        border-bottom: 1px solid rgba(100,100,100,0.4);
+        &:focus{
+            border-bottom: 1px solid rgba(100,200,200,0.8)
+        }
+    }
+    
+    textarea{
+        resize: none;
+    }
+
+    .edit-submit{
+        display: flex;
+        justify-content: center;
+        margin-top: 32px;
+        button{
+            width: 60%;
+        }
+    }
+
+
+    .edit-select{
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 8px;
+
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.product-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .product-title-price{
+        padding-right: 6px;
+    }
+    .icon{
+        color: $secondary;
+        font-size: 2em;
+    }
+}
+
+.cart-buy-now{
+    background-color: $secondary;
+    padding: 8px;
+    font-size: 1em;
+}

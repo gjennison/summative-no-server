@@ -1,0 +1,88 @@
+.active, .favourite{
+    .icon-active, .icon-favourite{
+        display: block;
+        font-size: 2.5em;
+    }
+    .icon-inactive, .icon-notFavourite{
+        display: none;
+    }
+}
+
+.inactive, .notFavourite{
+    .icon-active, .icon-favourite{
+        display: none;
+    }
+    .icon-inactive, .icon-notFavourite{
+        display: block;
+        font-size: 2.5em;
+    }
+}
+
+.icon-container.favourite{
+    animation: bounce 0.4s;
+}
+.icon-container.notFavourite{
+    animation: bounce2 0.4s;
+}
+
+@keyframes bounce{
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes bounce2{
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.post-button-bounce{
+    animation: post-bounce 0.2s;
+}
+
+.post-button-bounce2{
+    animation: post-bounce2 0.2s;
+}
+
+@keyframes post-bounce{
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes post-bounce2{
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

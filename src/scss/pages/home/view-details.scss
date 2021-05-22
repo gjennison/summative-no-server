@@ -1,0 +1,46 @@
+.view-details{
+    margin-bottom: 120px;
+    .heading-img{
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+    
+    .view-details-content{
+        font-size: 0.8em;
+
+        .heading{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .icon{
+                color: crimson;
+            }
+        }
+        .location{
+            margin-top: -16px;
+        }
+        .view-details-price-add-to-cart{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            .price{
+                font-weight: bold;
+                color: $primary;
+                font-size: 1.2em;
+                margin: 0px;
+            }
+
+            button{
+                padding: 8px;
+            }
+        }
+
+        .subheading{
+            // color: rgb(150,150,150);
+            color: $secondary;
+        }
+    }
+}

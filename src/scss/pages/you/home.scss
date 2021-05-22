@@ -1,0 +1,37 @@
+.YouHome{
+    h2{
+        color: $primary;
+        display: flex;
+        align-items: center;
+        img{
+            margin-bottom: 8px;
+            margin-right: 8px;
+        }
+    }
+    .group{
+        margin-bottom: 48px;
+    }
+
+    .link{
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(100,100,100,0.5);
+        padding-bottom: 8px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        .you-icons{
+            color: $secondary;
+            font-size: 1.6em;
+            padding-right: 4px;
+            padding-top: 4px;
+        }
+    }
+    
+    .bold{
+        border-bottom: none;
+    }
+
+    button{
+        width: 100%;
+    }
+}

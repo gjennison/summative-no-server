@@ -1,0 +1,75 @@
+.payment{
+    .payment-options{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        div{
+            width: 1px;
+            height: 80px;
+            background-color: grey;
+        }
+    }
+
+    .payment-details{
+        display: grid;
+        grid-template-columns: 45% 45%;
+        gap: 1em;
+        justify-content: center;
+        .detail{
+            p.subheading{
+                font-size: 0.9em;
+                margin-top: 0px;
+                color: rgb(100,100,100);
+            }
+            margin-bottom: 16px;
+            input{
+                width: 95%;
+                font-size: 1.1em;
+                background-color: lightgrey;
+            }
+
+            .expiry{
+                display: flex;
+                justify-content: space-evenly;
+                select{
+                    border: none;
+                    outline: none;
+                    background-color: $secondary-light;
+                    width: 45%;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    hr{
+        margin: 20px;
+    }
+
+    .payment-amount{
+        .amount{
+            display: flex;
+            justify-content: space-between;
+        }
+        margin-left: 5%;
+        margin-right: 5%;
+
+        // font-size: 1.2em;
+        color: rgb(60,60,60);
+
+        .subheading{
+            font-size: 0.9em;
+            position: relative;
+            top: -10px;
+        }
+    }
+
+    button{
+        background-color: $secondary;
+        font-size: 1.1em;
+        width: 70%;
+        margin-top: 40px;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}

@@ -1,0 +1,52 @@
+.account-header-img{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-image: url('../../../header.png');
+    img{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.account{
+    .account-heading{
+        text-align: center;
+        .subheading{
+            font-size: 1.2em;
+        }
+        p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            div:first-child{
+                padding-bottom: 4px;
+            }
+        }
+    }
+
+    .account-section{
+        margin-top: 32px;
+
+        p{
+            display: flex;
+            align-items: center;
+            img{
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+.account-listings-icons{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .icon{
+        font-size: 1.8em;
+    }
+    .icon:last-child{
+        margin-top: 10px;
+    }
+}
